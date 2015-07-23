@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style media="screen" type="text/css">
+		.ng-valid{
+			border: thin solid #090;
+		}
+		.ng-invalid{
+			border: thin solid #990000;
+		}
+	</style>
+
+	<meta charset="utf-8">
+	<title>Mi primer AngularJS</title>
+</head>
+	<body ng-app="app" ng-init=" Mensaje='Hola Mundo'">
+		{{Mensaje}}
+	<div ng-controller="MainController">
+		{{autor.nombre}} estudia {{autor.curso}}
+		<div ng-repeat="alumno in alumnos | orderBy:'nombre'">
+			<div>{{alumno.nombre}} - {{alumno.telefono}}</div>
+		</div>
+		<br/>
+		<div><button ng-click="ShowForm()" ng-hide="formVisibility">Añadir</button></div>
+		<br/>
+		<div class="wrapper" ng-show="formVisibility">
+				<h2>Añadir contacto</h2>
+				Nombre: <input type="text" ng-model="nuevoAlumno.nombre"></input>
+				Telefono: <input type="text" ng-model="nuevoAlumno.telefono"></nombre>
+				<button ng-click="Save()">Guardar</button>
+		</div>
+
+
+		<div class="wrapper">
+			<form ng-submit="addTarea()">
+				<input type="text" ng-model="tarea"></input>
+				<input type="submit" value="Add tarea">
+			</form>
+			<div>
+				<h1>Lista de tareas</h1>
+				<div ui-sortable ng-model="tareas" style="cursor:move;">
+					<p ng-repeat="tarea in tareas">
+						{{tarea}}<button ng-click="deleteTarea($index)">Eliminar</button>
+					</p>
+				</div>
+			</div>
+		</div>
+
+ 
+		<carousel interval="setInterval">
+			<slide ng-repeat="slide in slides" active="slide.active">
+				<img ng-src="{{slide.image}}" style="margin:auto;">
+				<div class="carousel-caption">
+					<h2>{{slide.title}}</h2>
+					<p>{{slide.text}}</p>
+				</div>
+			</slide>
+		</carousel>
+aaaaaaaaaaaaaaaaaaa
+<select class="genoa-documentation-select" ng-model="myOption" ng-change="selectAction()">
+			
+				<optgroup label="nombre1">
+	        		<option value="uno">uno</option>
+	        		<option value="dos">dos</option>
+	    		</optgroup>
+	    		<optgroup label="nombre2">
+	        		<option value="uno2">uno2</option>
+	        		<option value="dos3">dos2</option>
+	    		</optgroup>
+	    		
+	    		
+	    	
+			</select>
+
+
+
+		<select class="form-control" ng-model="myOption" ng-change="selectAction()">
+ 			<option  value="1">
+     			uno
+  			</option>
+  			 <option  value="2">
+     			dos
+  			</option>
+		</select>
+
+	</div>
+
+	<nav>
+		<ul>
+			<li><a href="#">Inicio</a></li>
+			<li><a href="#acerca">Acerca</a></li>
+			<li><a href="#/articulos">Articulos</a></li>
+			<li><a href="#/galeria">Galeria</a></li>
+			<li><a href="#/miembros">Miembros</a></li>
+		</ul>
+	</nav>
+
+	<div ng-view></div>
+
+
+<!-- con esto cargamos la directiva dir-template -->
+<dir-template01></dir-template01>
+
+<dir-template02></dir-template02>
+
+<dir-template03></dir-template03>
+
+<div ng-controller="dirController04">
+	<dir-template04 nombre="{{usuario}}" edad="edad" show="infoUser(usuario,edad)" link="{{ msgLink }}"></dir-template04>
+</div>
+
+<dir-template05 type="03"></dir-template05>
+
+<div ng-controller="dirController06">
+  <dir-template06 info="naomi"></dir-template06>
+  <hr>
+  <dir-template06 info="igor"></dir-template06>
+</div>
+asdfadsfdsafdsfdsaf
+ <div ng-controller="ProfileController as profile">
+	<form name="profileForm">
+		<input ng-model="favoriteNumber" name="favoriteNumber" genoa-password />
+		<div ng-messages="profileForm.favoriteNumber.$error" class="errors" ng-messages-multiple>
+			<div ng-messages-include="messages.html" ></div>
+  		</div>
+
+		<input ng-model="favoriteNumberRe" name="favoriteNumberRe" compare-to="favoriteNumberRe" genoa-minlength="2"  genoa-Repass />
+		<div ng-messages="profileForm.favoriteNumberRe.$error" class="errors" ng-messages-multiple>
+			<div ng-messages-include="messages.html" ></div>
+  		</div>
+  		  		
+  		<input ng-model="userName" name="userName" user-name/>
+		<div ng-messages="profileForm.userName.$error" class="errors">
+			<div ng-messages-include="messages.html" ></div>
+  		</div>
+
+		<p ng-if="profileForm.$valid">
+	  		Corercto
+		</p>
+		<p ng-if="profileForm.$invalid">
+	  		Hay algún error en el formulario
+		</p>
+{{profileForm.$valid}} <<< asdflkjadsf sdalkjfsad flkjads f
+		 <button type="submit" class="btn btn-primary" data-ng-disabled="!profileForm.$valid">Submit</button>
+	</form>
+
+	 <!--div ng-messages="profileForm.favoriteNumber.$error" 
+           ng-messages-include="messages.html"
+           class="errors">
+           <span ng-message="minlength">Must be more than 1.</span>
+    </div-->
+    <p ng-if="profileForm.favoriteNumber.$error.required">
+  		Please enter a valid email
+	</p>
+	 <p ng-if="profileForm.favoriteNumber.$error.genoaPassword">
+  		Please enter a valid email
+	</p>
+</div>
+
+<!--form name="myForm">
+  <label>
+    Enter text:
+    <input type="text" ng-model="field" name="myField" required minlength="5" />
+  </label>
+  <div ng-messages="myForm.myField.$error" role="alert">
+    <div ng-message="required">You did not enter a field</div>
+    <div ng-message="minlength, maxlength">
+      Your email must be between 5 and 100 characters long
+    </div>
+  </div>
+</form-->
+
+
+	<script src="jquery-1.11.2.js" type="text/javascript"></script>
+
+	<script src="angular.min.js" type="text/javascript"></script>
+
+	<script src="jquery-ui.js" type="text/javascript"></script>
+	<script src="sortable.js" type="text/javascript"></script>
+	<!--script src="bootstrap232/js/bootstrap.min.js" type="text/javascript"></script-->
+
+	<script src="ui-bootstrap-tpls-0.12.0.js" type="text/javascript"></script>
+	<script src="angular-route.min.js" type="text/javascript"></script>
+	<script src="nggrid/js/ng-grid.min.js" type="text/javascript"></script>
+	<script src="angular-messages.min.js" type="text/javascript"></script>
+
+	<link href="bootstrap332/css/bootstrap.min.css" rel="stylesheet">
+	<link href="nggrid/css/ng-grid.min.css" rel="stylesheet">
+
+
+
+	<script type="text/javascript">
+
+
+		function MainController($scope){
+			$scope.autor={
+				nombre: "Julio",
+				curso: "COU"
+			}
+
+			$scope.alumnos=[
+				{nombre:"uno", telefono:"dsfads"},
+				{nombre:"dos", telefono:"adfadfdas"},
+				{nombre:"tres", telefono:"666666"}
+			]
+			$scope.tareas=['Item 1', 'Item 2', 'Item 3'];
+
+			$scope.Save=function(){
+				$scope.alumnos.push({nombre:$scope.nuevoAlumno.nombre, telefono:$scope.nuevoAlumno.telefono});
+					$scope.formVisibility=false;
+				
+				}
+			$scope.formVisibility=false;
+			$scope.ShowForm=function(){
+				$scope.formVisibility=true;
+
+			}
+			$scope.addTarea=function(){
+				$scope.tareas.push($scope.tarea);
+				$scope.tarea="";
+			}
+ $scope.selectAction=function(){
+ 		alert($scope.myOption);
+        console.log($scope.myOption);
+    };
+
+			$scope.tarea="";
+			$scope.deleteTarea=function(index){
+				$scope.tareas.splice(index,1);
+			}
+
+				var baseURL='http://lorempixel.com/960/450/';
+				$scope.setInterval=5000;
+				$scope.slides=[
+				{
+					title: 'titulo1',
+					image: baseURL+'sports/',
+					text:'texto1'
+				},
+				{
+					title: 'titulo2',
+					image: baseURL+'food/',
+					text:'texto2'
+				},
+				{
+					title: 'titulo3',
+					image: baseURL+'nature/',
+					text:'texto3'
+				}
+				]
+
+
+		}
+		angular.module('app', [
+			'ui.sortable',
+			'ui.bootstrap',
+			'ngRoute',
+			'ngGrid',
+			'ngMessages'
+			])
+			.config(function($routeProvider){
+				$routeProvider
+					.when('/',{
+						templateUrl: 'pages/home.html',
+						controller: 'MainController'
+
+					})
+					.when('/acerca',{
+						templateUrl: 'pages/acerca.html',
+						controller: 'MainController'
+					})
+					.when('/articulos',{
+						templateUrl: 'pages/articulos.html',
+						controller: 'ArticulosCtrl'
+					})
+					.when('/galeria',{
+						templateUrl: 'pages/galeria.html',
+						controller: 'GaleriaCtrl'
+					})
+					.when('/miembros',{
+						templateUrl: 'pages/miembros.html',
+						controller: 'MiembrosCtrl'
+					})
+					.otherwise({
+						redirectTo: '/'
+					});
+			})
+
+			.directive("customNumber", function() {
+			    return {
+			      restrict: "A",
+			      require: "ngModel",
+			      link: function(scope, element, attributes, ctrl) {
+			        ctrl.$validators.customNumber = function(modelValue) {
+			        	alert(modelValue);
+			          return false;
+			        };
+			      }
+			    };
+			 })
+
+			.directive("genoaPassword",function() {
+			    return {
+			      restrict: "A",
+			      require: "ngModel",
+			      link: function(scope, element, attributes, ctrl) {
+			      	ctrl.$validators.genoaPassword = function(modelValue) {
+			        	var RegExPattern =/^([a-zA-Z0-9_]{8,255})$/;
+			        	if(modelValue!=undefined){
+			        	    if ((modelValue.match(RegExPattern))) {
+						        return true;
+						    } else {
+						        return false;
+			          		}
+		          		}
+		          	};
+			      }
+			    };
+			 })
+
+			.directive("genoaRepass",function() {
+			    return {
+			      restrict: "A",
+			      require: "ngModel",
+			      scope:{
+			      	compareTo: '=compareTo',
+			      	genoaMinlength: '=genoaMinlength'
+			      },
+			      link: function(scope, element, attributes, ctrl) {
+					element.bind('blur', function (e) {
+						alert(scope.compareTo);
+						alert(scope.genoaMinlength);
+						var currentValue = element.val();
+						if(currentValue!=scope.compareTo){
+							ctrl.$setValidity('genoaRepass', false);
+						}else{
+							ctrl.$setValidity('genoaRepass', true);
+						}
+			      	});
+			      }
+			    };
+			 })
+
+
+
+			.directive("userName",function() {
+			    return {
+			      restrict: "A",
+			      require: "ngModel",
+			      link: function(scope, element, attributes, ctrl) {
+			      	element.bind('blur', function (e) {
+				        var currentValue = element.val();
+			        	var RegExPattern =/^([a-zA-Z0-9_]{8,255})$/;
+			        	if(currentValue!=undefined){
+			        	    if ((currentValue.match(RegExPattern))) {
+			        	    	ctrl.$setValidity('userName', true);
+						    } else {
+						    	ctrl.$setValidity('userName', false);
+			          		}
+		          		}
+			      	});
+			      }
+			    }
+			})
+
+
+
+			.directive("genoaEmail",function() {
+			    return {
+			      restrict: "A",
+			      require: "ngModel",
+			      link: function(scope, element, attributes, ctrl) {
+			        ctrl.$validators.genoaEmail = function(modelValue) {
+			        	var RegExPattern =/[\w-\.]{1,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+			        	if(modelValue!=undefined){
+			        	    if ((modelValue.match(RegExPattern))) {
+						        return true;
+						    } else {
+						        return false;
+			          		}
+		          		}
+			        };
+			      }
+			    };
+			 })
+
+			.directive("genoaNoBlank",function() {
+			    return {
+			      restrict: "A",
+			      require: "ngModel",
+			      link: function(scope, element, attributes, ctrl) {
+			        ctrl.$validators.genoaNoBlank = function(modelValue) {
+			        	if(modelValue!=undefined){
+			        	    if (modelValue.indexOf(" ")===-1) {
+						        return true;
+						    } else {
+						        return false;
+			          		}
+		          		}
+			        };
+			      }
+			    };
+			 })
+
+			.controller('MainController', MainController)
+			.controller('ArticulosCtrl', function($scope){
+					$scope.posts=[
+						{
+							title:"titulo 1",
+							content:"contenido 1"
+						},
+						{
+							title:"titulo 2",
+							content:"contenido 2"
+						},
+						{
+							title:"titulo 3",
+							content:"contenido 3"
+						}
+					]
+			})
+			.controller('GaleriaCtrl',function($scope){
+				var pictures = $scope.pictures = [];
+				var baseURL="http://lorempixel.com/300/180/";
+				var titles =["Comida sana","salud y trabajo"];
+				var keywords=["food","business"];
+				var dummyText="asdflkjda sfñlkadsjf asdlñkfjasd ñkfljsdaf ñlakdsjf";
+
+				$scope.addPics=function(i){
+					pictures.push({
+						url:baseURL+keywords[i],
+						title:titles[i],
+						summary:dummyText
+					})
+				}
+
+				for(var i=0;i<2;i++){
+					$scope.addPics(i);
+				}
+				$scope.rate=0;
+				$scope.max=10;
+				$scope.isReadonly=false;
+			})
+			.controller('MiembrosCtrl',function($scope,$http, $modal){
+				$http.get('http://127.0.0.1/angular/miembros.json').success(function(data){
+					$scope.miembros=data;
+				})
+				$scope.gridOptions={
+					data:'miembros',
+					showGroupPanel: true,
+					enableCellSelection: true,
+					enableRowSelection: false,
+					enableCellEdit: true,
+					columnDefs:[
+						{field:'no',displayName:'Nº'},
+						{field:'nombre',displayName:'Nombre'},
+						{field:'fidelidad',displayName:'Puntos Fidelidad'},
+						{field:'fechaUnion',displayName:'Fecha de Unión'},
+						{field:'tipoMiembro',displayName:'Tipo de miembro'}
+					]
+				};
+				$scope.showModal=function(){
+					$scope.nuevoMiembro={};
+					var modalInstance=$modal.open({
+						templateUrl: 'pages/add-miembros.html',
+						controller: 'AddNuevoMiembroCtrl',
+						resolve:{
+							nuevoMiembro:function(){
+								return $scope.nuevoMiembro;
+							}
+						}
+					});
+					modalInstance.result.then(function(selectedItem){
+						$scope.miembros.push({
+							no: $scope.miembros.length+1,
+							nombre: $scope.nuevoMiembro.nombre,
+							tipoMiembro: $scope.nuevoMiembro.tipoMiembro,
+							fidelidad: $scope.nuevoMiembro.fidelidad,
+							fechaUnion: $scope.nuevoMiembro.fechaUnion
+						});
+					})
+				}
+			})
+			.controller('AddNuevoMiembroCtrl',function($scope, $modalInstance, nuevoMiembro){
+				$scope.nuevoMiembro=nuevoMiembro;
+				$scope.salvarNuevoMiembro=function(){
+					$modalInstance.close(nuevoMiembro);
+				};
+				$scope.cancel=function(){
+					$modalInstance.dismiss('cancel');
+				};
+			})
+			.directive('dirTemplate01', function (){
+				return {
+					restrict: 'E',//<dir-template></dir-template> hace referencia a un elemento/etiqueta html
+					template: '<div class="dirClass"><h1>Directivas con AngularJS</h1>' +
+					'<ul><li ng-repeat="value in values">{{value}}</li></ul></div>',
+					link: function (scope,element){
+						//element hace referencia al div que contiene la directiva
+						//en la función link añadimos algo de css con jQuery
+						$(".dirClass").css({'background' : 'orange', 'color' : 'white'});
+						//y creamos una variable de alcance con scope que contiene un array
+						scope.values = ["simple","directiva","con","clases","en","angularjs"];
+					}
+				};
+			})
+			.directive('dirTemplate02', function (){
+				return {
+					restrict: 'E',//<dir-template></dir-template> hace referencia a un elemento/etiqueta html
+					templateUrl: 'template02.html',
+					link: function (scope,element){
+						//element hace referencia al div que contiene la directiva
+						//en la función link añadimos algo de css con jQuery
+						$(".dirClass").css({'background' : 'orange', 'color' : 'white'});
+						//y creamos una variable de alcance con scope que contiene un array
+						scope.values = ["simple","directiva","con","clases","en","angularjs"];
+					}
+				};
+			})
+			.directive('dirTemplate03', function ($http){
+				return {
+					restrict: 'E',//<dir-template></dir-template> hace referencia a un elemento/etiqueta html
+					templateUrl: 'template03.html',
+					link: function (scope){
+						//obtenemos la información del archivo data.json
+						$http.get('template03.json').success(function (data){
+							//pasamos los datos a la vista con scope
+							scope.users = data;
+						});
+					}
+				};
+			})
+			.directive('dirTemplate04', function(){
+				return{
+					restrict: 'E',
+					template: '<div><div>Hola {{ nombre }}</div>' +
+					'Escribe tu edad: <input ng-model="edad" />' +
+					'<a href="#" ng-click="show()">{{ link }}</div>',
+					scope: {
+						nombre: "@", //variables de alcance($scope) o por valor
+						edad: "=", //usado para hacer uso de data-binding(datos entre vista controlador) o por referencia
+						link: "@",
+						show: "&" //útiles para llamar a funciones
+					}
+				}
+			})
+			.controller("dirController04", function($scope){
+				//esta variable de alcance la usamos con dynamicDir en la variable scope nombre
+				$scope.usuario = "Israel";
+				//esta variable de alcance la usamos con dynamicDir en la variable scope link
+				$scope.msgLink = "Pulsa para ver el resultado!!";
+				$scope.infoUser = function(usuario,edad){
+					alert("Hola " + usuario + " tu edad es " + edad);
+				}
+			})
+			.directive('dirTemplate05', function ($http){
+				return {
+					restrict: 'E',//<dir-template></dir-template> hace referencia a un elemento/etiqueta html
+					templateUrl: function(elem,attr){
+							return 'template'+attr.type+'.html';
+						},
+					link: function (scope){
+						//obtenemos la información del archivo data.json
+						$http.get('template03.json').success(function (data){
+							//pasamos los datos a la vista con scope
+							scope.users = data;
+						});
+					}
+				};
+			})
+			.controller("dirController06", function($scope){
+				$scope.naomi = { name: 'Naomi', address: '1600 Amphitheatre' };
+  				$scope.igor  = { name: 'Igor', address: '123 Somewhere' };
+			})
+			.directive('dirTemplate06', function(){
+				return{
+					restrict: 'E',
+	    			scope: {
+	      				customerInfo: '=info'
+	    			},
+	    			template: 'Name: {{customerInfo.name}} Address: {{customerInfo.address}}'
+	    		}
+			})
+			.controller("ProfileController", function() {
+			    var model = this;
+			    
+			    model.message = "";
+			    model.submit = function(valid) {
+			      if (valid) {
+			        model.message = "Your new number is " + model.number;
+			      } else {
+			        model.message = "Needs fixing!";
+			      }
+			    };
+			  })
+			.directive("customNumber", function() {
+			    return {
+			      restrict: "A",
+			      require: "ngModel",
+			      link: function(scope, element, attributes, ctrl) {
+			        ctrl.$validators.customNumber = function(modelValue) {
+			          return false;
+			        };
+			      }
+			    };
+			  })
+			;
+	</script>
+	<!--
+	Primera línea de prueba
+	Segunda línea de prueba
+	Tercera línea de prueba
+	-->
+</html>
